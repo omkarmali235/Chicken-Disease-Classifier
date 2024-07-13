@@ -16,12 +16,14 @@ list_of_files = [
     f"src/{project_name}/pipeline/__init__.py",
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/constants/__init__.py",
+    f"src/{project_name}/exception/exception.py",
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
     "requirements.txt",
     "setup.py",
     "research/trails.ipynb",
+    "templates/index.html",
 ]
 
 for filepath in list_of_files:
@@ -36,4 +38,4 @@ for filepath in list_of_files:
         with open(filepath, "w") as f:
             logging.info(f"Creating empty file: {filepath}")
     else:
-        logging.info(f"{fileame} is already exists")
+        logging.info(f"{filename} is already exists")
