@@ -2,7 +2,9 @@ import os
 from pathlib import Path
 import urllib.request as request
 from zipfile import ZipFile
+import keras
 import tensorflow as tf
+from cnnClassifier import logger
 
 from cnnClassifier.entity.config_entity import PrepareBaseModelConfig
 
@@ -37,7 +39,9 @@ class PrepareBaseModel:
             activation="softmax"
         )(flatten_in)
 
+        logger.info(f"model input {model.input} ")
         full_model = tf.keras.models.Model(
+            # shape=(224, 224, 3),
             inputs=model.input,
             outputs=prediction
         )

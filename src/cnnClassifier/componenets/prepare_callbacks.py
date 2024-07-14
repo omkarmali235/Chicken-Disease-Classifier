@@ -19,19 +19,25 @@ class PrepareCallback:
             self.config.tensorboard_root_log_dir,
             f"tb_logs_at_{timestamp}",
         )
-        return tf.keras.callbacks.TensorBoard(log_dir=tb_running_log_dir)
+        print("tensorboard_callback")
+        tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=tb_running_log_dir)
+        print("tensorboard_callback :")
+        print(tensorboard_callback)
+        return tensorboard_callback
     
 
     @property
     def _create_ckpt_callbacks(self):
-        return tf.keras.callbacks.ModelCheckpoint(
-            filepath='artifacts/prepare_callbacks/checkpoint_dir/model.h5',
+        model_checkpt = tf.keras.callbacks.ModelCheckpoint(
+            filepath=self.config.checkpoint_model_filepath,
             save_best_only=True
         )
+        print("model_checkpt :")
+        print(model_checkpt)
+        return model_checkpt
 
 
     def get_tb_ckpt_callbacks(self):
-        ls=[]
-        ls.append(str(self._create_tb_callbacks))
-        ls.append(str(self._create_ckpt_callbacks))
-        return ls
+        return [object(self._create_tb_callbacks()),
+            object(self._create_ckpt_callbacks())
+        ]
