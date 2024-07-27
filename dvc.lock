@@ -79,3 +79,35 @@ stages:
       hash: md5
       md5: 7f83a0eb2690606421f03f7ba7b56644
       size: 59133303
+  evaluation:
+    cmd: python src/cnnClassifier/pipeline/stage_04_evaluation.py
+    deps:
+    - path: artifacts/data_ingestion/Chicken-fecal-images
+      hash: md5
+      md5: 9e1f8dd2eae3c29e9d635df89d438ae4.dir
+      size: 12207807
+      nfiles: 390
+    - path: artifacts/training/model.keras
+      hash: md5
+      md5: 7f83a0eb2690606421f03f7ba7b56644
+      size: 59133303
+    - path: config/config.yaml
+      hash: md5
+      md5: 26e331180b780358284a1253c4ecf37e
+      size: 814
+    - path: src/cnnClassifier/pipeline/stage_04_evaluation.py
+      hash: md5
+      md5: 6e4d04bc2ea7289619f4c5f5ec3f1c88
+      size: 906
+    params:
+      params.yaml:
+        BATCH_SIZE: 16
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 5da16571f4422ff9feed050f28b09b9b
+      size: 57
